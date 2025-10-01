@@ -1,91 +1,96 @@
 Image Box Filter using NVIDIA NPP with CUDA
-
 Overview
-This project demonstrates the use of the NVIDIA Performance Primitives (NPP) library with CUDA to perform a box filter on images. The goal is to utilize GPU acceleration to efficiently smooth images by averaging neighboring pixels, leveraging the computational power of modern GPUs. The project is a part of the CUDA at Scale for the Enterprise course and serves as a template for understanding how to implement basic image processing operations using CUDA and NPP.
+
+This project demonstrates the use of the NVIDIA Performance Primitives (NPP) library with CUDA to perform a box filter on images.
+The goal is to use GPU acceleration to efficiently smooth images by averaging neighboring pixels, leveraging the computational power of modern GPUs.
+
+This project is part of the CUDA at Scale for the Enterprise course and serves as a template for implementing basic image processing operations using CUDA and NPP.
 
 Code Organization
-bin/ This folder should hold all binary/executable code that is built automatically or manually. Executable code should use the .exe extension on Windows or be compiled binaries on Linux.
 
-data/ This folder should hold all example input and output images in supported formats such as PNG, PGM, or BMP.
+bin/ – Contains compiled binaries or executables
 
-lib/ Any third-party libraries not installed via the system package manager can be placed here for easy linking.
+data/ – Example input/output images (PNG, PGM, BMP, etc.)
 
-src/ The CUDA and C++ source code should be placed here in a structured way.
+lib/ – Third-party libraries not installed via the system package manager
 
-README.md This file contains the description of the project, including setup, build, and usage instructions.
+src/ – Source code (CUDA + C++)
 
-INSTALL This file can hold detailed instructions for installing dependencies across different operating systems.
+README.md – Project description (this file)
 
-Makefile or CMakeLists.txt or build.sh Scripts for compiling the project in an automatic fashion.
+INSTALL – Instructions for installation and dependencies
 
-run.sh Optional script to run the executable with or without command-line arguments.
+Makefile / CMakeLists.txt / build.sh – Build scripts
+
+run.sh – Optional script to run executables
 
 Key Concepts
-Performance Strategies, Image Processing, NPP Library
 
-Supported SM Architectures
-SM 3.5
-SM 3.7
-SM 5.0
-SM 5.2
-SM 6.0
-SM 6.1
-SM 7.0
-SM 7.2
-SM 7.5
-SM 8.0
-SM 8.6
+Performance Strategies
 
-Supported Operating Systems
-Linux, Windows
+Image Processing
 
-Supported CPU Architectures
-x86_64, ppc64le, armv7l
+NPP Library
 
-CUDA APIs involved
+Supported Architectures
+
+GPU SM Architectures: 3.5, 3.7, 5.0, 5.2, 6.0, 6.1, 7.0, 7.2, 7.5, 8.0, 8.6
+
+Operating Systems: Linux, Windows
+
+CPU Architectures: x86_64, ppc64le, armv7l
+
+CUDA APIs Used
+
 NPP image filtering APIs
+
 CUDA memory management APIs
 
-Dependencies needed to build and run
-FreeImage library for image I/O
-NPP library (part of CUDA Toolkit)
+Dependencies
+
+CUDA Toolkit (11.4 or later)
+
+NPP (bundled with CUDA Toolkit)
+
+FreeImage (for image I/O)
 
 Prerequisites
-Download and install the CUDA Toolkit (11.4 or later) for your platform. Ensure that FreeImage and NPP dependencies are installed.
+
+Install CUDA Toolkit (11.4 or newer).
+
+Ensure FreeImage and NPP dependencies are installed.
+
+Verify GPU support for the target architecture.
 
 Build and Run
-
-Windows
-On Windows, the project can be built using Visual Studio solution files (.sln). Each solution file corresponds to a supported version of Visual Studio. To build all samples, use the complete solution files. To build only one sample, use the project-level solution.
-
-Note: Some samples may require the Microsoft DirectX SDK (June 2010 or newer). Ensure that the VC++ directories are properly set in Visual Studio (Tools > Options).
-
-Linux
-On Linux, the project can be built using makefiles. Navigate to the source directory and run:
-
+On Linux
+cd boxFilterNPP
 make
+make run
 
-Available build options include:
-make TARGET_ARCH=x86_64
-make TARGET_ARCH=ppc64le
-make TARGET_ARCH=armv7l
-make dbg=1 (to include debug symbols)
-make SMS="50 60" (to target specific GPU architectures)
-make HOST_COMPILER=g++ (to specify a host compiler)
+On Windows
+
+Open the .sln file in Visual Studio.
+
+Build the solution.
+
+Run the executable.
 
 Running the Program
-After building, you can run the program with:
+
+Default execution after build:
 
 make run
 
-This will execute the binary, applying a box filter to the input image (for example grey-sloth.png) and save the result as grey-sloth_boxFilter.png in the data or output directory.
 
-Alternatively, you can run the binary directly:
+This applies a box filter to the input image (for example grey-sloth.png) and saves the result as grey-sloth_boxFilter.png.
+
+To run manually with custom input/output:
+
 ./bin/boxFilterNPP --input data/grey-sloth.png --output data/grey-sloth_boxFilter.png
 
 Cleaning Up
-To remove compiled binaries and generated files, run:
+
+To remove binaries and temporary files:
 
 make clean
-
-This will delete everything inside the bin/ directory.
